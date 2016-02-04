@@ -129,7 +129,7 @@ module Coinkite
     end
 
     def make_signature(endpoint, force_ts=nil)
-      ts = force_ts || Time.now.utc.iso8601
+      ts = force_ts || Time.now.utc.iso8601(6)
       data = endpoint + '|' + ts
       hmac = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('SHA256'), @api_secret, data)
 
